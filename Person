@@ -1,0 +1,45 @@
+public class Person {
+    private final boolean man;
+    private Person spouse;
+    private final String name;
+
+
+    Person(boolean man,String name){
+        this.name = name;
+        this.man = man;
+    }
+
+    public  boolean marry(Person person) {
+
+
+        if (this.man != person.man && this.spouse != person) {
+            this.divorce();
+            person.divorce();
+            this.spouse = person;
+            person.spouse = this;
+            System.out.println("true");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean divorce() {
+        if (spouse != null) {
+            spouse.spouse = null;
+            spouse = null;
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        Person person = new Person(false, "Merry");
+        Person person1 = new Person(true,"John");
+        person.marry(person1);
+    }
+
+}
